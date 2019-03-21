@@ -106,3 +106,7 @@ resource "aws_instance" "flume_kafka_ec2" {
     name = "flume_kafka"
   }
 }
+
+output "ec2_ips" {
+  value = ["${aws_instance.flume_kafka_ec2.*.public_ip}"]
+}

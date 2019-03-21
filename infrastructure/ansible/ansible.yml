@@ -1,0 +1,10 @@
+---
+- hosts: localhost
+  roles:
+    - ../roles/create_ec2_group
+
+- hosts: ec2_group
+  become: yes
+  become_user: root
+  roles:
+    - ../roles/install_docker

@@ -1,0 +1,15 @@
+- name: ingest terraform ec2 output
+  shell: sed 's/,//' ../terraform/output.txt
+  register: terraform_output
+
+- name: debugging
+  debug: msg="user={{ item }}"
+  with_items: "{{ terraform_output.stdout_lines }}"
+
+- name: adding general ec2_group hosts
+  add_host:
+    name: "{{ item }}"
+    groups: ec2_group
+    ansible_user: ec2-user
+    ansible_ssh_private_key_file: "/home/tigstep/csaa_ec2_key.pem"
+  with_items: "{{ terraform_output.stdout_lines }}"
