@@ -1,0 +1,1 @@
+terraform apply -var-file=variables.tfvars && terraform output  ec2_ips > output.txt

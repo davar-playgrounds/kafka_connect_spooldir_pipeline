@@ -1,2 +1,25 @@
-- name: install docker
-  shell: echo "test" > test.txt
+- name: Install docker
+  yum:
+    name: docker
+    state: latest
+- name: Remove the Docker installer file.
+  file:
+    state: absent
+    path: /root/install_docker.sh
+- name: Enable the Docker daemon in systemd
+  systemd:
+    name: docker
+    enabled: yes
+    masked: no
+- name: Start the Docker daemon
+  systemd:
+    name: docker
+    state: started
+    masked: no
+- name: install pip
+  yum:
+    name: python-pip
+    state: latest
+- name: install pip docker
+  pip:
+    name: docker

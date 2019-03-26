@@ -7,4 +7,8 @@
   become: yes
   become_user: root
   roles:
+    - ../roles/prepare_docker_vars
+    - ../roles/update_ec2_hosts
     - ../roles/install_docker
+    - ../roles/start_zookeeper
+    - ../roles/start_kafka
