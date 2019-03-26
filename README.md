@@ -4,6 +4,6 @@
   To Do
 </h2>
 <ul>
-  <li>Using Ansible deploy Zookeepers on ec2_group</li>
-  <li>Using Ansible deploy Kafka Borakers on ec2_group</li>
+  <li>Modify Kafka to AutoEnable the topic creation</li>
+  <li>Manually test run apache flume locally</li>
 </ul>
