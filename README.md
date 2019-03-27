@@ -4,7 +4,7 @@
   To Do
 </h2>
 <ul>
-  <li>Change repo name to KafkaConnectSpooldir_Kafka</li>
+  <li>Change repo name to KafkaConnectSpooldir_Avro_Kafka</li>
   <li>Install Confluent Kafka locally</li>
   <li>Switch to confluent zookeeper</li>
   <li>Switch to confluent kafka</li>
