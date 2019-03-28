@@ -1,0 +1,2 @@
+- name: Start Schema Registry
+  shell: docker run -d --restart=always -p 8081:8081 --name=schema-registry -e SCHEMA_REGISTRY_KAFKASTORE_CONNECTION_URL={{ inventory_hostname }}:2181 -e SCHEMA_REGISTRY_HOST_NAME={{ inventory_hostname }} -e SCHEMA_REGISTRY_LISTENERS=http://{{ inventory_hostname }}:8081 -e SCHEMA_REGISTRY_DEBUG=true confluentinc/cp-schema-registry
