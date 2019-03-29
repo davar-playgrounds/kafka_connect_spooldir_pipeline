@@ -12,10 +12,16 @@
     zk_host_port_list: []
 - name: setting zk host:port
   set_fact:
-    zk_host_port_list: "{{ zk_host_port_list }} + [ '{{ item }}' + ':2181' ]"
+    zk_host_port_list: "{{ zk_host_port_list }} + [ '{{ item }}' + ':2888:3888' ]"
   with_items:
     "{{ groups['ec2_group'] }}"
   register: zk_host_port_list
-- name: Debugging
-  debug:
-    "msg": "{{ zk_host_port_list | join(',') }}"
+- name: Set kafka_zk_host_port_list variable
+  set_fact:
+    kafka_zk_host_port_list: []
+- name: setting kafka zk host:port
+  set_fact:
+    kafka_zk_host_port_list: "{{ kafka_zk_host_port_list }} + [ '{{ item }}' + ':2181' ]"
+  with_items:
+    "{{ groups['ec2_group'] }}"
+  register: kafka_zk_host_port_list

@@ -11,5 +11,5 @@
     - ../roles/update_ec2_hosts
     - ../roles/install_docker
     - ../roles/start_zookeeper
-    #- ../roles/start_kafka
+    - ../roles/start_kafka
     #- ../roles/start_schema_registry

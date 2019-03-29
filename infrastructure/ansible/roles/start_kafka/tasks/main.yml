@@ -4,4 +4,4 @@
 #- name: Start the kafka cluster
 #  shell: docker run -d -p 9092:9092 -e KAFKA_HOST={{ inventory_hostname }}:9092 -e KAFKA_PORT=9092 -e ZOOKEEPER_CONNECT={{ zk_host_port_list | join(',') }} -e AUTO_CREATE_TOPIC={{'true'}} -e KAFKA_ID={{ groups['ec2_group'].index(inventory_hostname) + 1 }} --name kafka tigstep/docker-kafka-cluster
 - name: Start the Conflouent Kafka cluster
-  shell: docker run -d --restart=always -p 9092:9092 --name=kafka -e KAFKA_ZOOKEEPER_CONNECT={{ zk_host_port_list | join(',') }} -e KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://{{ inventory_hostname }}:9092 confluentinc/cp-kafka
+  shell: docker run -d --restart=always -p 9092:9092 --name=kafka -e KAFKA_ZOOKEEPER_CONNECT={{ kafka_zk_host_port_list | join(',') }} -e KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://{{ inventory_hostname }}:9092 confluentinc/cp-kafka
