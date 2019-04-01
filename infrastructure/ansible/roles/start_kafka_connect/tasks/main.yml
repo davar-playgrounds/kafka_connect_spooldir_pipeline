@@ -1,0 +1,16 @@
+- name: Creates kafka connect data directory
+  file:
+    path: /tmp/kafka_connect/data
+    state: directory
+
+- name: Create topic connect-offsets topic
+  shell: docker run --rm confluentinc/cp-kafka kafka-topics --create --topic connect-offsets --partitions 1 --replication-factor 1 --if-not-exists --zookeeper {{ kafka_zk_host_port_list | join(',') }}
+
+- name: Create connect-config topic
+  shell: docker run --rm confluentinc/cp-kafka kafka-topics --create --topic connect-config --partitions 1 --replication-factor 1 --if-not-exists --zookeeper {{ kafka_zk_host_port_list | join(',') }}
+
+- name: Create connect-status topic
+  shell: docker run --rm confluentinc/cp-kafka kafka-topics --create --topic connect-status --partitions 1 --replication-factor 1 --if-not-exists --zookeeper {{ kafka_zk_host_port_list | join(',') }}
+
+- name: Start the kafka-connect
+  shell: docker run -d --restart=always -p 8082:8082 --name=kafka-connect -e CONNECT_PRODUCER_INTERCEPTOR_CLASSES=io.confluent.monitoring.clients.interceptor.MonitoringProducerInterceptor -e CONNECT_CONSUMER_INTERCEPTOR_CLASSES=io.confluent.monitoring.clients.interceptor.MonitoringConsumerInterceptor -e CONNECT_BOOTSTRAP_SERVERS={{ kafka_host_port_list | join(',') }} -e CONNECT_REST_PORT=8082 -e CONNECT_GROUP_ID="kafka-connect" -e CONNECT_CONFIG_STORAGE_TOPIC="connect-config" -e CONNECT_OFFSET_STORAGE_TOPIC="connect-offsets" -e CONNECT_STATUS_STORAGE_TOPIC="connect-status" -e CONNECT_KEY_CONVERTER="org.apache.kafka.connect.json.JsonConverter" -e CONNECT_VALUE_CONVERTER="org.apache.kafka.connect.json.JsonConverter" -e CONNECT_INTERNAL_KEY_CONVERTER="org.apache.kafka.connect.json.JsonConverter" -e CONNECT_INTERNAL_VALUE_CONVERTER="org.apache.kafka.connect.json.JsonConverter" -e CONNECT_REST_ADVERTISED_HOST_NAME="localhost" -e CONNECT_LOG4J_ROOT_LOGLEVEL=INFO -v /tmp/kafka_connect/data:/tmp/kafka_connect/data confluentinc/cp-kafka-connect

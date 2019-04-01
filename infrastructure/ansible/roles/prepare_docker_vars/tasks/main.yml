@@ -5,7 +5,7 @@
   set_fact:
     zk_host_list: "{{ zk_host_list }} + [ '{{ item }}' ]"
   with_items:
-    "{{ groups['ec2_group'] }}"
+    "{{ groups['zk_kafka_group'] }}"
   register: zk_host_list
 - name: Set zk_host_port_list variable
   set_fact:
@@ -14,7 +14,7 @@
   set_fact:
     zk_host_port_list: "{{ zk_host_port_list }} + [ '{{ item }}' + ':2888:3888' ]"
   with_items:
-    "{{ groups['ec2_group'] }}"
+    "{{ groups['zk_kafka_group'] }}"
   register: zk_host_port_list
 - name: Set kafka_zk_host_port_list variable
   set_fact:
@@ -23,7 +23,7 @@
   set_fact:
     kafka_zk_host_port_list: "{{ kafka_zk_host_port_list }} + [ '{{ item }}' + ':2181' ]"
   with_items:
-    "{{ groups['ec2_group'] }}"
+    "{{ groups['zk_kafka_group'] }}"
   register: kafka_zk_host_port_list
 - name: Set kafka_host_port_list variable
   set_fact:
@@ -32,5 +32,5 @@
   set_fact:
     kafka_host_port_list: "{{ kafka_host_port_list }} + [ '{{ item }}' + ':9092' ]"
   with_items:
-    "{{ groups['ec2_group'] }}"
+    "{{ groups['zk_kafka_group'] }}"
   register: kafka_host_port_list

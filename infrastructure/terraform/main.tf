@@ -95,7 +95,7 @@ resource "aws_route_table_association" "public-rt-1" {
 # Defining the EC2 instance
 
 resource "aws_instance" "flume_kafka_ec2" {
-  count                  = 3
+  count                  = 4
   ami                    = "ami-0799ad445b5727125"
   instance_type          = "t2.small"
   vpc_security_group_ids = ["${aws_security_group.flume_kafka_sg.id}"]

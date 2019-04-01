@@ -1,0 +1,23 @@
+- name: ingest terraform ec2 output
+  shell: sed 's/,//' ../terraform/output.txt
+  register: terraform_output
+
+- name: debugging
+  debug: msg="user={{ item }}"
+  with_items: "{{ terraform_output.stdout_lines }}"
+
+- name: adding general zk_kafka_group hosts
+  add_host:
+    name: "{{ item }}"
+    groups: zk_kafka_group
+    ansible_user: ec2-user
+    ansible_ssh_private_key_file: "/home/tigstep/csaa_ec2_key.pem"
+  with_items: "{{ terraform_output.stdout_lines[1:] }}"
+
+- name: adding general sr_cc hosts
+  add_host:
+    name: "{{ item }}"
+    groups: sr_cc_group
+    ansible_user: ec2-user
+    ansible_ssh_private_key_file: "/home/tigstep/csaa_ec2_key.pem"
+  with_items: "{{ terraform_output.stdout_lines[:1] }}"

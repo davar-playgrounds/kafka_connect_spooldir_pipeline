@@ -1,9 +1,9 @@
 ---
 - hosts: localhost
   roles:
-    - ../roles/create_ec2_group
+    - ../roles/create_groups
 
-- hosts: ec2_group
+- hosts: zk_kafka_group
   become: yes
   become_user: root
   roles:
@@ -12,5 +12,13 @@
     - ../roles/install_docker
     - ../roles/start_zookeeper
     - ../roles/start_kafka
+- hosts: sr_cc_group
+  become: yes
+  become_user: root
+  roles:
+    - ../roles/prepare_docker_vars
+    - ../roles/update_ec2_hosts
+    - ../roles/install_docker
     - ../roles/start_schema_registry
     - ../roles/start_control_center
+    - ../roles/start_kafka_connect

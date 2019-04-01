@@ -1,0 +1,16 @@
+EXPORT CONNECT_HOST=<connect_host>
+#To start the kafka-connect job
+curl -X POST \
+  -H "Content-Type: application/json" \
+  --data '{"name": "quickstart-file-source", "config": {"connector.class":"org.apache.kafka.connect.file.FileStreamSourceConnector", "tasks.max":"1", "topic":"quickstart-data", "file": "/tmp/kafka_connect/data/input.txt"}}' \
+  http://$CONNECT_HOST:8082/connectors
+
+#To check the status
+curl -X GET http://$CONNECT_HOST:8082/connectors/quickstart-file-source/status
+
+#To consume
+docker run \
+ --net=host \
+ --rm \
+ confluentinc/cp-kafka \
+ kafka-console-consumer --bootstrap-server <bootstrap_servers>:9092 --topic quickstart-data --new-consumer --from-beginning --max-messages 10

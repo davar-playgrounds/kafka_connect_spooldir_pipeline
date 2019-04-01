@@ -4,7 +4,7 @@
 #- name: Start the zookeeper cluster
 #  shell: docker run -d --restart=always -p 2181:2181 -p 2888:2888 -p 3888:3888 -v /var/lib/zookeeper:/var/lib/zookeeper -v /var/log/zookeeper:/var/log/zookeeper jeygeethan/zookeeper-cluster "{{ zk_host_list | join(',') }}" {{ groups['ec2_group'].index(inventory_hostname) + 1 }}
 - name: Start the zookeeper cluster
-  shell: docker run -d --restart=always -p 2181:2181 -p 2888:2888 -p 3888:3888 --name=zookeeper -e ZOOKEEPER_SERVER_ID={{ groups['ec2_group'].index(inventory_hostname) + 1 }} -e ZOOKEEPER_CLIENT_PORT=2181 -e ZOOKEEPER_SERVERS="{{ zk_host_port_list | join(';') | replace(inventory_hostname,"0.0.0.0")}}" confluentinc/cp-zookeeper
+  shell: docker run -d --restart=always -p 2181:2181 -p 2888:2888 -p 3888:3888 --name=zookeeper -e ZOOKEEPER_SERVER_ID={{ groups['zk_kafka_group'].index(inventory_hostname) + 1 }} -e ZOOKEEPER_CLIENT_PORT=2181 -e ZOOKEEPER_SERVERS="{{ zk_host_port_list | join(';') | replace(inventory_hostname,"0.0.0.0")}}" confluentinc/cp-zookeeper
 - name: wait 20 seconds
   pause:
     seconds: 20
