@@ -4,11 +4,10 @@
   To Do
 </h2>
 <ul>
+  <li>Change the port for kafka-connect to 8083</li>
+  <li>Change the port for control-center for kafka-connect to 8083</li>
   <li>Change repo name to KafkaConnectSpooldir_Avro_Kafka</li>
-  <li>Change the ec2 number to 4 use the first 3 for zookeeper/kafka and the last one for schema_registry, control_center, connectors</li>
   <li>Modify Kafka to AutoEnable the topic creation</li>
-  <li>Start a Control_Center</li>
-  <li>Produce/Consume and test the Control Center</li>
   <li>Make a test push to Schema_Registry from Local</li>
   <li>Produce/Consume with Avro Serialization</li>
   <li>Start Kafka Connect</li>
