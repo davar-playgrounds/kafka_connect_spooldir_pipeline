@@ -4,8 +4,6 @@
   To Do
 </h2>
 <ul>
-  <li>Change the port for kafka-connect to 8083</li>
-  <li>Change the port for control-center for kafka-connect to 8083</li>
   <li>Change repo name to KafkaConnectSpooldir_Avro_Kafka</li>
   <li>Modify Kafka to AutoEnable the topic creation</li>
   <li>Make a test push to Schema_Registry from Local</li>
