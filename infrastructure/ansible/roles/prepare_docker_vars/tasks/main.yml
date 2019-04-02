@@ -34,3 +34,11 @@
   with_items:
     "{{ groups['zk_kafka_group'] }}"
   register: kafka_host_port_list
+- name: Set kafka_connect_host_port_list variable
+  set_fact:
+    kafka_connect_host_port_list: []
+- name: setting kafka_connect host:port
+  set_fact:
+    kafka_connect_host_port_list: "{{ kafka_connect_host_port_list }} + ['http://' + '{{ item }}' + ':8082' ]"
+  with_items:
+    "{{ groups['sr_cc_group'] }}"
