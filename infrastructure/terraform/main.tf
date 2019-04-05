@@ -97,7 +97,7 @@ resource "aws_route_table_association" "public-rt-1" {
 resource "aws_instance" "flume_kafka_ec2" {
   count                  = 4
   ami                    = "ami-0799ad445b5727125"
-  instance_type          = "t2.small"
+  instance_type          = "t2.medium"
   vpc_security_group_ids = ["${aws_security_group.flume_kafka_sg.id}"]
   subnet_id              = "${aws_subnet.flume_kafka_subnet.id}"
   key_name               = "csaa_ec2_key"
