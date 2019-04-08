@@ -11,7 +11,7 @@
 <ul>
   <li>Terraform</li>
   <li>Ansible</li>
-  <li>Maven</li>
+  <li>Apache Maven</li>
   <li>AWS EC2</li>
   <li>Confluent Kafka</li>
     <ul>
@@ -36,11 +36,22 @@ A dockerized Confluent Kafka Cluster running on AWS EC2 instances that uses the 
 </h2>
 <ul>
   <li>Change repo name to KafkaConnectSpooldir_Avro_Kafka</li>
-  <li>WGET kafka-spool jar and volume to kafka-connect</li>
   <li>Modify Kafka to AutoEnable the topic creation</li>
   <li>Make a test push to Schema_Registry from Local</li>
   <li>Produce/Consume with Avro Serialization</li>
   <li>Start Kafka Connect</li>
   <li>Produce using Kafka Connect and Spooling</li>
   <li>[<b>Not a High Priority</b>] Switch to dynamic ec2 ami lookup</li>
+</ul>
+<h2>
+Observations
+</h2>
+<ul>
+  <li>It would be very useful to have a central repository of kafka connect connectors that can be accessed programaticaly to download and place the connectors onto connect worker's path</li>
+</ul>
+<h2>
+  Warnings
+</h2>
+<ul>
+  <li>Current configuration of this project will be using AWS services that are beyond the Free Tier!</li>
 </ul>
