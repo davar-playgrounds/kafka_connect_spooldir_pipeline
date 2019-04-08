@@ -8,6 +8,22 @@
 <h2>
   Tools/Services Used
 </h2>
+<ul>
+  <li>Terraform</li>
+  <li>Ansible</li>
+  <li>Maven</li>
+  <li>AWS EC2</li>
+  <li>Confluent Kafka</li>
+    <ul>
+      <li>Zookeeper</li>
+      <li>Kafka Broker</li>
+      <li>Schema Registry</li>
+      <li>Control Center</li>
+      <li>Kafka Connect Worker</li>
+    </ul>
+  <li>Docker</li>
+  <li>Kafka-Connect-Spooldir Connector</li>
+</ul>
 <h2>
   Short Description
 </h2>
