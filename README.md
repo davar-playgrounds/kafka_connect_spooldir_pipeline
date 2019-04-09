@@ -2,6 +2,8 @@
 <h2>
   Diagram
 </h2>
+
+![alt text](https://github.com/tigstep/flume_kafka/blob/master/diagrams/kafka_connect_spooldir.jpg)
 <h2>
   Requirments
 </h2>
