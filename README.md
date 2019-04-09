@@ -37,6 +37,8 @@ A dockerized Confluent Kafka Cluster running on AWS EC2 instances that uses the 
   To Do
 </h2>
 <ul>
+  <li>Add metrics monitoring to kafka brockers</li>
+  <li>Start kafka-connect worker with Avro serialization</li>
   <li>Change repo name to KafkaConnectSpooldir_Avro_Kafka</li>
   <li>Modify Kafka to AutoEnable the topic creation</li>
   <li>Make a test push to Schema_Registry from Local</li>
