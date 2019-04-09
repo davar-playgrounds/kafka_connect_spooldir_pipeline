@@ -1,0 +1,28 @@
+#create balances topic
+
+mkdir /tmp/source
+mkdir /tmp/finished
+mkdir /tmp/error
+
+curl -i -X POST -H "Accept:application/json" \
+-H  "Content-Type:application/json" http://54.183.200.241:8082/connectors/ \
+-d '{
+"name": "balances_to_kafka",
+"config": {
+"tasks.max": "1",
+"connector.class": "com.github.jcustenborder.kafka.connect.spooldir.SpoolDirCsvSourceConnector",
+"input.file.pattern": "^balances.*.csv$",
+"input.path": "/tmp/source",
+"finished.path": "/tmp/finished",
+"error.path": "/tmp/error",
+"halt.on.error": "false",
+"topic": "balances",
+"value.schema":"{\"name\":\"org.tigstep.kafka.connect.model.Value\",\"type\":\"STRUCT\",\"isOptional\":false,\"fieldSchemas\":{\"ssn\":{\"type\":\"STRING\",\"isOptional\":false},\"first_name\":{\"type\":\"STRING\",\"isOptional\":false},\"last_name\":{\"type\":\"STRING\",\"isOptional\":false},\"account_id\":{\"type\":\"STRING\",\"isOptional\":false},\"balance\":{\"type\":\"STRING\",\"isOptional\":false},\"type\":{\"type\":\"STRING\",\"isOptional\":false},\"address\":{\"type\":\"STRING\",\"isOptional\":false}}}",
+"key.schema":"{\"name\":\"org.tigstep.kafka.connect.model.Key\",\"type\":\"STRUCT\",\"isOptional\":false,\"fieldSchemas\":{\"ssn\":{\"type\":\"STRING\",\"isOptional\":false}}}",
+"csv.first.row.as.header": "true"
+}
+}'
+
+#to check
+
+curl -s "http://54.183.200.241:8082/connectors"| jq '.[]'| xargs -I{connector_name} curl -s "http://localhost:8083/connectors/"{connector_name}"/status"| jq -c -M '[.name,.connector.state,.tasks[].state]|join(":|:")'| column -s : -t| sed 's/\"//g'| sort
