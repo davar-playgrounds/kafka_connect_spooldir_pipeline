@@ -71,6 +71,21 @@ This project uses two different infrasctructure managment tools to prepare the i
   <li>[<b>Not a High Priority</b>] Switch to dynamic ec2 ami lookup</li>
 </ul>
 <h2>
+  Execution
+</h2>
+  In order to execute, issue
+  <ol>
+    <li>terraform apply -var-file=variables.tfvars && terraform output  ec2_ips > output.txt</li>
+    <li>ansible-playbook ansible.yml</li>
+  </ol>
+  The above 2 steps shoul provide a fully functional pipeline that will take a CSV files as an input and publish the content to a topic.
+<h2>
+  Test run
+</h2>
+  In order to test the pipeline,
+  Copy the file provided to /tmp/.. location on the EC2 instance where the Kafka Connect Container is running.
+  You should be able to see the topic populated using Either the Control Center or kafka consumer
+<h2>
 Observations
 </h2>
 <ul>
