@@ -32,7 +32,29 @@
 A dockerized Confluent Kafka Cluster running on AWS EC2 instances that uses the Spooldir Connector(https://github.com/jcustenborder/kafka-connect-spooldir) to spool a directory, Avro serialize the data using the Schema Registry and publish to Kafka Brokers. This project also makes the Confluent Control Center available for visualization.  
 <h2>
   Process Description
-</h2>  
+</h2>
+This project uses two different infrasctructure managment tools to prepare the infrastructure (Terraform and Ansible)
+    <h3>
+      Terraform
+    </h3>
+    <ol>
+      <li>Creates a VPC</li>
+      <li>Creates a Subnet inside that VPC</li>
+      <li>Defines a Security Group for later use</li>
+      <li>Defines an Internet Gatway and Configures the routing to use the Internet Gateway</li>
+      <li>Spins up ec2 instances inside the Subnet created above behind the defined Security Group</li>
+    </ol>
+    <h3>
+      Ansible
+    </h3>
+  <ol>
+    <li>Installs Docker on the above EC2 instances</li>
+    <li>Starts the a Zookeeper Container using Confluent's Zookeeper Image</li>
+    <li>Starts the a Kafka Container using Confluent's Enterprise Kafka Image</li>
+    <li>On one of the EC2 instances it starts a Schema Registry Container using Confluent's Schema Registry Image</li>
+    <li>On one of the EC2 instances it starts a Control Center Container using Confluent's Enterprise Control Center Image</li>
+    <li>On one of the EC2 instances it starts a Kafka Connect Container using Confluent's Kafka Connect Image and adds Kafka_Connect_Spooldir connector in it's path</li>
+  </ol>
 <h2>
   To Do
 </h2>
