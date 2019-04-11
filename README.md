@@ -75,7 +75,7 @@ This project uses two different infrasctructure managment tools to prepare the i
     <li>terraform apply -var-file=variables.tfvars && terraform output  ec2_ips > output.txt</li>
     <li>ansible-playbook ansible.yml</li>
   </ol>
-  The above 2 steps shoul provide a fully functional pipeline that will take a CSV files as an input and publish the content to a topic.
+  The above 2 steps should provide a fully functional pipeline that will take a CSV files as an input, avro serialize it and publish to a topic.
 <h2>
   Test run
 </h2>
