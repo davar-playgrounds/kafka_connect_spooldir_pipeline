@@ -59,7 +59,7 @@ This project uses two different infrasctructure managment tools to prepare the i
   To Do
 </h2>
 <ul>
-  <li>Modify Kafka to AutoEnable the topic creation</li>
+  <li>Modiy Kafka to AutoEnable the topic creation</li>
   <li>Make Kafka Connect Topic Visible in Control Center</li>
   <li>[<b>Not a High Priority</b>] Switch to dynamic ec2 ami lookup</li>
 </ul>
