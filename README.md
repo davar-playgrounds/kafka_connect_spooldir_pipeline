@@ -59,9 +59,6 @@ This project uses two different infrasctructure managment tools to prepare the i
   To Do
 </h2>
 <ul>
-  <li>Change Kafka Broker to use cp-enterprise-kafka instead of cp-kafka</li>
-  <li>Add metrics monitoring class to control center</li>
-  <li>Add metrics monitoring class to kafka brokers</li>
   <li>Start kafka-connect worker with Avro serialization</li>
   <li>Change repo name to KafkaConnectSpooldir_Avro_Kafka</li>
   <li>Modify Kafka to AutoEnable the topic creation</li>
@@ -78,7 +75,7 @@ This project uses two different infrasctructure managment tools to prepare the i
     <li>terraform apply -var-file=variables.tfvars && terraform output  ec2_ips > output.txt</li>
     <li>ansible-playbook ansible.yml</li>
   </ol>
-  The above 2 steps shoul provide a fully functional pipeline that will take a CSV files as an input and publish the content to a topic.
+  The above 2 steps should provide a fully functional pipeline that will take a CSV files as an input, avro serialize it and publish to a topic.
 <h2>
   Test run
 </h2>
