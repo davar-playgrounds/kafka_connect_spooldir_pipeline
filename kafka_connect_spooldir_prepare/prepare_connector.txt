@@ -26,7 +26,7 @@ curl -i -X POST -H "Accept:application/json" \
 
 
 curl -i -X POST -H "Accept:application/json" \
--H  "Content-Type:application/json" http://13.56.234.243:8082/connectors/ \
+-H  "Content-Type:application/json" http://52.53.230.234:8082/connectors/ \
 -d '{
 "name": "balances_to_kafka",
 "config": {
@@ -39,7 +39,10 @@ curl -i -X POST -H "Accept:application/json" \
 "halt.on.error": "false",
 "topic": "balances",
 "csv.first.row.as.header": "true",
-"schema.generation.enabled": "true"
+"schema.generation.enabled": "true",
+"transforms": "InsertField",
+"transforms.InsertField.timestamp.field": "fieldtime",
+"transforms.InsertField.type": "org.apache.kafka.connect.transforms.InsertField$Value"
 }
 }'
 
